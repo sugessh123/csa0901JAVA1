@@ -1,0 +1,17 @@
+EXPECTED output for the default sample file (database product/driver lines depend on your installation):
+
+Read 2502 lines: 2500 valid, 2 failed validation
+Loaded 2500 rows in <your time> ms
+Failure report written to failure_report.txt (2 entries)
+   line 2501: expected 5 fields but found 3  -> [P9001,192319001,Broken]
+   line 2502: amount is not numeric: abc  -> [P9002,192319002,BadAmt,4,abc]
+
+--- DatabaseMetaData ---
+Database product : MySQL <your version>
+Driver           : MySQL Connector/J <your version>
+JDBC version     : 4.2
+Supports batch   : true
+Supports txns    : true
+Tables in busdb_test:
+   bus_pass
+   users        (only if you also ran Task B2's setup script)

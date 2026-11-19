@@ -1,0 +1,22 @@
+Java 21.0.12.1, OS Linux
+=== B1.1 Validation tests ===
+T1 add+find normal  (P1001)  -> [P1001, 192311001, Arun, 12, 4500.0]
+T2 name with comma  (P1002)  -> [P1002, 192311002, Meena, K, 7, 3800.0]
+T3 missing ID       (P9999)  -> null
+T4 damaged line ID  (P1003)  -> null
+T5 find after damage (P1004) -> [P1004, 192311004, Divya, 12, 4200.0]
+T6 list route 12             -> P1001 P1004 
+
+=== B1.3 Effect of buffering (line counting) ===
+MB       lines    unbuffered ms  byte[8192] ms  BufferedReader readAllLines  
+1        36564    397.4          5.0            26.7           48.2          
+10       365631   2230.9         18.8           34.0           55.1          
+50       1828153  10833.8        21.5           120.6          425.7         
+
+=== B1.4 Growth: time to find a pass (worst case = last record) ===
+records    file find ms     100 file finds ms    HashMap build+100 ms
+1000       1.62             221.3                3.5               
+5000       5.93             103.8                6.9               
+10000      1.46             161.7                3.9               
+50000      16.58            757.1                42.8              
+100000     32.08            1370.2               54.0              

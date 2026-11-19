@@ -1,0 +1,10 @@
+Valid records : 2
+   [P2001, 192311001, Arun, 12, 4500.0]
+   [P2007, 192311007, Sana, 3, 3500.0]
+Rejected lines: 5
+   line 2: expected 5 fields but found 4  -> [P2002,192311002,Divya,7]
+   line 3: amount is not numeric: FORTY-FIVE  -> [P2003,192311003,Kavin,9,FORTY-FIVE]
+   line 4: empty line  -> []
+   line 5: route is not an integer: xx  -> [P2005,192311005,Meena,xx,3800.0]
+   line 6: expected 5 fields but found 6  -> [P2006,192311006,Ravi,5,3000.0,EXTRA]
+find(P2007) after the damaged lines -> [P2007, 192311007, Sana, 3, 3500.0]

@@ -1,0 +1,16 @@
+EXPECTED output (timings depend on your machine and are not listed - fill them in the report):
+
+=== B3.1 Correctness on 10 records ===
+Statement -> rows in table: 10
+PreparedStatement -> rows in table: 10
+Batch -> rows in table: 10
+Columns (name : SQL type : Java class):
+  pass_id : VARCHAR : java.lang.String
+  reg_no : VARCHAR : java.lang.String
+  name : VARCHAR : java.lang.String
+  route_no : INT : java.lang.Integer
+  amount : DOUBLE : java.lang.Double
+...
+=== B3.3 ===
+Rows left after failure (auto-commit)  : 5000   <- partial data stays
+Rows left after failure (transaction)  : 0   <- rolled back, table clean

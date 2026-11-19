@@ -1,0 +1,6 @@
+EXPECTED behaviour (derived from the SQL logic - run LoginDemo yourself and compare):
+
+Case: valid login            UNSAFE true   SAFE true   REGEX true
+Case: wrong password         UNSAFE false  SAFE false  REGEX false
+Case: id=[admin' -- ]        UNSAFE true   SAFE false  REGEX false
+Case: pwd=[' OR '1'='1]      UNSAFE true   SAFE false  REGEX false
