@@ -3,7 +3,7 @@
 **Student Name:** p.SUGESH  
 **Register Number:** 192465039 
 **Java Version:** JDK 8 or later  
-**Repository name:** `CSA09-192372257-Assignment1`
+**Repository name:** `CSA09-192465039-Assignment1`
 
 ## Project contents
 - `Assignment_Report.md` – simple answers and explanations for Tasks 1–12.
