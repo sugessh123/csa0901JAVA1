@@ -2,8 +2,8 @@
 
 | | Student A | Student B |
 |---|---|---|
-| Name | T.Achyuth | [partner's name] |
-| Register number | 192372257 | [RegNo B] |
+| Name | P.SUGESH| [partner's name] |
+| Register number | 192465039 | [RegNo B] |
 | GitHub repository | [link A] | [link B] |
 
 **Java version used:** JDK 17 or later (tested with OpenJDK 21). No external libraries.
