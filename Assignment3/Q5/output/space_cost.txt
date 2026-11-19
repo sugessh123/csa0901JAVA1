@@ -1,0 +1,4 @@
+Heap used to represent s = 10000 seats (all booked in the map case):
+  boolean[s]            :    10016 bytes (1.0 bytes/seat)
+  AtomicBoolean[s]      :   203560 bytes (20.4 bytes/seat)
+  ConcurrentHashMap     :   610048 bytes (61.0 bytes/seat)

@@ -1,0 +1,25 @@
+--- 1. Closing order (declared r1, r2, r3) ---
+  open  r1
+  open  r2
+  open  r3
+  body runs
+  close r3
+  close r2
+  close r1
+--- 2. try-with-resources: body fails AND two closes fail ---
+  open  A
+  open  B
+  close B
+  close A
+  primary   : body failed
+  suppressed: close failed: B
+  suppressed: close failed: A
+--- 3. manual finally: body fails AND close fails -> original is LOST ---
+  open  M
+  caught    : body failed
+  close M
+  finally threw: close failed: M
+--- 3b. same code without the inner try: exception from finally REPLACES the body exception ---
+  open  M2
+  close M2
+  caller sees: close failed: M2  (suppressed count = 0)

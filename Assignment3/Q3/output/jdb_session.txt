@@ -1,0 +1,24 @@
+Initializing jdb ...
+Deferring breakpoint SalesReport$ManualHappyPath:87.
+It will be set after the class is loaded.
+run Dbg
+Set uncaught java.lang.Throwable
+Set deferred uncaught java.lang.Throwable
+VM Started: Set deferred breakpoint SalesReport$ManualHappyPath:87
+Breakpoint hit: "thread=main", SalesReport$ManualHappyPath.run(), line=87 bci=46
+main[1]  s = "/tmp/dbg3517859882175421084/store001.csv"
+main[1]  TrackedReader.OPEN = "1"
+main[1] > 
+Breakpoint hit: "thread=main", SalesReport$ManualHappyPath.run(), line=87 bci=46
+main[1]  s = "/tmp/dbg3517859882175421084/store002.csv"
+main[1]  TrackedReader.OPEN = "1"
+main[1] > 
+Breakpoint hit: "thread=main", SalesReport$ManualHappyPath.run(), line=87 bci=46
+main[1]  s = "/tmp/dbg3517859882175421084/store003.csv"
+main[1]  TrackedReader.OPEN = "1"
+main[1] > 
+Step completed: "thread=main", SalesReport$ManualHappyPath.run(), line=91 bci=90
+main[1]  TrackedReader.OPEN = "1"
+main[1] >    LOG WARNING store failed: store003.cs
+Breakpoint hit: v -> java.lang.NumberFormatException"thread=main", SalesReport$ManualHappyPath.run(), line=87 bci=46
+main[1] : For input string: "x"

@@ -1,0 +1,17 @@
+=== B1. while vs if, notify vs notifyAll (capacity 5 unless stated) ===
+while + notifyAll, 1 producer, 2 consumers    30 trials: correct= 30 wrong=  0 HUNG=  0 | max size seen=1 min size seen=0
+if    + notifyAll, 1 producer, 2 consumers    30 trials: correct=  0 wrong= 30 HUNG=  0 | max size seen=1 min size seen=-18
+while + notify,    1 producer, 2 consumers    30 trials: correct= 30 wrong=  0 HUNG=  0 | max size seen=1 min size seen=0
+while + notify,    2 producers, 2 consumers, cap 1  30 trials: correct=  0 wrong=  0 HUNG= 30 | max size seen=1 min size seen=0
+while + notifyAll, 2 producers, 2 consumers, cap 1  30 trials: correct= 30 wrong=  0 HUNG=  0 | max size seen=1 min size seen=0
+
+=== B2. Counter size over time (while + notifyAll, 1 producer, 2 consumers, producer pauses 1 ms) ===
+size after each of the 40 operations: [1, 2, 3, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 5, 4, 3, 2, 1, 0]
+max size = 5 (limit 5), min size = 0 (limit 0)
+
+=== B3. sleep() vs wait(): how long does a second thread wait to ENTER the monitor? ===
+sleep(400) inside synchronized     -> second thread entered the monitor after  380 ms
+wait(400) inside synchronized      -> second thread entered the monitor after    0 ms
+
+=== B4. Throughput: wait/notifyAll counter vs ArrayBlockingQueue(5), 1 producer, 2 consumers, 300,000 tokens ===
+wait/notifyAll: 463 ms   ArrayBlockingQueue: 504 ms

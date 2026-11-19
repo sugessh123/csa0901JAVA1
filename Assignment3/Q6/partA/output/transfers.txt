@@ -1,0 +1,14 @@
+=== A1. Deadlock-prone transfer: T1: A->B and T2: B->A at the same time ===
+T1 state = BLOCKED, T2 state = BLOCKED
+ThreadMXBean.findDeadlockedThreads() -> 2 threads deadlocked
+  T1(A->B) is BLOCKED waiting for Transfers$Account held by T2(B->A)
+  T2(B->A) is BLOCKED waiting for Transfers$Account held by T1(A->B)
+Four conditions: mutual exclusion=synchronized monitors; hold-and-wait=holds 'from' while waiting for 'to';
+                 no pre-emption=monitors cannot be taken away; circular wait=T1 waits for T2's lock and T2 for T1's.
+
+=== A2. Lock ordering by account id: same two transfers cannot deadlock ===
+U1 alive=false, U2 alive=false, balances C=950 D=1050 (expected 950 and 1050)
+
+=== A3. Stress: 8 threads x 50,000 random transfers among 20 accounts ===
+ordered synchronized   finished=true time=    80.1 ms  money conserved=true (sum=20000000)  retries=0 gave up=0
+tryLock+timeout        finished=true time=   168.5 ms  money conserved=true (sum=20000000)  retries=33 gave up=0

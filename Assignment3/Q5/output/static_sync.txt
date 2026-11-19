@@ -1,0 +1,5 @@
+instance lock only (per screen)      : total = 508 (expected 10000)
+static (class) lock on shared counter : total = 10000 (expected 10000)
+holdsLock(screen) inside synchronized(this)  = true
+holdsLock(Screen.class) inside class lock       = true
+holdsLock(screen) outside any lock              = false

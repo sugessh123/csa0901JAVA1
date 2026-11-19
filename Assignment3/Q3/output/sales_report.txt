@@ -1,0 +1,36 @@
+=== A. Same input (40 valid stores), is the report identical? ===
+V0 no close()                  identical=true   total line: TOTAL,323320.00
+V1 manual close() in try       identical=true   total line: TOTAL,323320.00
+V2 manual close() in finally   identical=true   total line: TOTAL,323320.00
+V3 try-with-resources          identical=true   total line: TOTAL,323320.00
+
+=== B. Failing input: 50 stores, every 5th corrupt mid-file (10 bad files) ===
+version                          opened   still open    OS fd delta       after GC report matches V3
+   LOG WARNING store failed: store005.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store010.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store015.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store020.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store025.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store030.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store035.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store040.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store045.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store050.csv -> java.lang.NumberFormatException: For input string: "x"
+   (V3 log lines above are expected: one WARNING per corrupt store)
+V0 no close()                        50           50             50              0 true
+V1 manual close() in try             50           10             10              0 true
+V2 manual close() in finally         50            0              0              0 true
+V3 try-with-resources                50            0              0              0 true
+
+=== C. Logging output of V3 on the failing input (first 3 shown) ===
+   LOG WARNING store failed: store005.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store010.csv -> java.lang.NumberFormatException: For input string: "x"
+   LOG WARNING store failed: store015.csv -> java.lang.NumberFormatException: For input string: "x"
+   ... (10 warnings in total, one per corrupt store)
+
+=== D. Median processing time (ms, 5 runs) for f valid store files of 200 lines ===
+f            V2 finally         V3 TWR
+100                 6.8            4.2
+200                15.4           15.3
+400                27.5           26.2
+800                25.3           23.2

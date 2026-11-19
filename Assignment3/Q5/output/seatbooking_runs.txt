@@ -1,0 +1,22 @@
+=== UNSYNCHRONIZED SeatBooking, 10 runs ===
+run  1: Seats sold: 10
+run  2: Seats sold: 10
+run  3: Seats sold: 10
+run  4: Seats sold: 10
+run  5: Seats sold: 10
+run  6: Seats sold: 10
+run  7: Seats sold: 10
+run  8: Seats sold: 10
+run  9: Seats sold: 10
+run 10: Seats sold: 10
+=== SYNCHRONIZED SeatBooking (TODO 1 completed), 10 runs ===
+run  1: Seats sold: 10
+run  2: Seats sold: 10
+run  3: Seats sold: 10
+run  4: Seats sold: 10
+run  5: Seats sold: 10
+run  6: Seats sold: 10
+run  7: Seats sold: 10
+run  8: Seats sold: 10
+run  9: Seats sold: 10
+run 10: Seats sold: 10

@@ -1,0 +1,42 @@
+=== H1. Hand-checked 12-file set (pool of 4 threads) ===
+Hand calculation: OK=6 (f01-f06), MISSING=1 (f07), CORRUPT=3 (f08,f09,f10), EMPTY=1 (f11), DUPLICATE=1 (f12)
+                  sum of totals of the 6 OK students = 375+350+500+0+325+300 = 1850; grades A=1 B=3 O=1 F=1
+Program : submitted=12  OK=6  MISSING=1  CORRUPT=3  EMPTY=1  DUPLICATE=1  | accounted=12 complete=true
+  OK count                                             expected=6        actual=6        PASS
+  MISSING count                                        expected=1        actual=1        PASS
+  CORRUPT count                                        expected=3        actual=3        PASS
+  EMPTY count                                          expected=1        actual=1        PASS
+  DUPLICATE count                                      expected=1        actual=1        PASS
+  sum of totals                                        expected=1850     actual=1850     PASS
+  grade distribution                                   expected={A=1, B=3, F=1, O=1} actual={A=1, B=3, F=1, O=1} PASS
+  summary complete (every file accounted)              expected=true     actual=true     PASS
+  failure lines:
+    f07.txt -> MISSING: f07.txt does not exist
+    f08.txt -> CORRUPT: f08.txt: mark 2 is not an integer: 'x7'
+    f09.txt -> CORRUPT: f09.txt: expected 6 fields but found 5
+    f10.txt -> CORRUPT: f10.txt: mark 3 out of range 0-100: 105
+    f11.txt -> EMPTY: f11.txt: file is empty
+    f12.txt -> DUPLICATE: f12.txt: student S00001 already recorded from f01.txt
+
+=== H2. Edge cases: what the processor does with awkward files ===
+  UTF-8 BOM before id                                  expected=OK       actual=OK       PASS
+  decimal mark 80.5                                    expected=CORRUPT  actual=CORRUPT  PASS
+  a directory, not a file                              expected=IO_ERROR actual=IO_ERROR PASS
+  dangling symlink                                     expected=MISSING  actual=MISSING  PASS
+  two records in one file                              expected=CORRUPT  actual=CORRUPT  PASS
+  CRLF + trailing blank lines                          expected=OK       actual=OK       PASS
+  boundary marks 0 and 100                             expected=OK       actual=OK       PASS
+  negative mark                                        expected=CORRUPT  actual=CORRUPT  PASS
+  5 MB single line (memory guard)                      expected=CORRUPT  actual=CORRUPT  PASS
+  UTF-16 encoded file                                  expected=OK       actual=CORRUPT  FAIL
+  spaces around every field                            expected=OK       actual=OK       PASS
+  mark overflowing int                                 expected=CORRUPT  actual=CORRUPT  PASS
+  edge-set summary: submitted=12  OK=4  MISSING=1  CORRUPT=6  IO_ERROR=1  | accounted=12 complete=true
+
+=== H3. Timeout: one worker never returns in time ===
+Program : submitted=3  OK=2  TIMEOUT=1  | accounted=3 complete=true
+  OK count                                             expected=2        actual=2        PASS
+  TIMEOUT count                                        expected=1        actual=1        PASS
+  elapsed well below the 5000 ms hang (ms < 2000)      expected=true     actual=true     PASS
+
+RESULT: 22 passed, 1 failed

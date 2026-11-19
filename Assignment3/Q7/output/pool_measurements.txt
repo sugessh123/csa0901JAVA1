@@ -1,0 +1,21 @@
+Dataset: 10000 files. Expected from the injection rule: {OK=9300, MISSING=200, CORRUPT=300, EMPTY=100, DUPLICATE=100, IO_ERROR=0, TIMEOUT=0, UNEXPECTED=0}
+
+--- simulated storage latency per file = 0 ms, 5 repetitions ---
+pool      mean ms     min ms     max ms   counts correct & summary complete
+1             228        198        288   true
+2             113        109        118   true
+4              85         81         91   true
+8              85         79         92   true
+16            102         87        113   true
+32            129         95        166   true
+64             97         88        107   true
+
+--- simulated storage latency per file = 1 ms, 2 repetitions ---
+pool      mean ms     min ms     max ms   counts correct & summary complete
+1           11517      11457      11577   true
+2            5816       5807       5824   true
+4            2921       2911       2930   true
+8            1476       1469       1482   true
+16            744        737        750   true
+32            370        367        372   true
+64            203        191        215   true

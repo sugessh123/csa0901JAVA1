@@ -1,0 +1,12 @@
+-- S4 is a normal (user) thread:
+  S4 scanned batch 1/5
+  S4 scanned batch 2/5
+main ends (S4 daemon=false, S4 alive=true)
+  S4 scanned batch 3/5
+  S4 scanned batch 4/5
+  S4 scanned batch 5/5
+  S4 finished all batches
+-- S4 is a daemon thread:
+  S4 scanned batch 1/5
+  S4 scanned batch 2/5
+main ends (S4 daemon=true, S4 alive=true)

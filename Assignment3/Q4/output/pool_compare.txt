@@ -1,0 +1,10 @@
+n = 400 scripts, 3 ms each. Ideal time = n/p * 3 ms
+p      ideal (ms)    raw threads       fixed pool
+1            1200         1251.5           1274.1
+2             600          630.2            631.0
+4             300          312.5            313.8
+8             150          158.0            157.8
+
+Cost of creating threads vs reusing pool workers (1000 tiny tasks, no sleep):
+  1000 new Thread objects : 70.4 ms
+  1000 tasks on 4 workers : 2.6 ms

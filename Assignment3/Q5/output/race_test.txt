@@ -1,0 +1,5 @@
+=== Race reproduction: 100 threads compete for 10 seats, 100 runs each ===
+unsynchronized, no latch gap       runs=100  runs with double booking=  0  avg double-booked seats/run=0.00  max 'sold'=10 (valid max 10)
+unsynchronized + yield in window   runs=100  runs with double booking= 65  avg double-booked seats/run=0.76  max 'sold'=14 (valid max 10)
+synchronized method + yield        runs=100  runs with double booking=  0  avg double-booked seats/run=0.00  max 'sold'=10 (valid max 10)
+synchronized block  + yield        runs=100  runs with double booking=  0  avg double-booked seats/run=0.00  max 'sold'=10 (valid max 10)

@@ -1,0 +1,13 @@
+=== error-code ATM sample ===
+[1001, 2000] -> code 0
+[10O1, 500] -> code -1
+[1001, -5] -> code -2
+[1001, 9999] -> code -3
+[1001, abc] -> code -2
+
+=== ns per failure (avg of 200000 iterations) ===
+stackDepth    throw+catch    return code  throw, no stack trace
+10                    887             14                     13
+100                  4207            388                    360
+500                 20616           2617                   3326
+(sink=385200000)

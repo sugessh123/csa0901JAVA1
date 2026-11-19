@@ -1,0 +1,27 @@
+=== Q2 scenario table ===
+S1 normal submission                                -> SUCCESS: ans1.pdf submitted
+S2 exam window closed                               -> REJECTED: Exam window 09:00-12:00 is closed at 12:30
+S3 student not registered                           -> REJECTED: S9 is not registered for CSA09
+S4 file above 200 KB limit                          -> REJECTED: ans4.pdf is 300 KB; limit is 200 KB
+   [log for admins] SubmissionStorageException: Could not store ans5.pdf for S2  <-caused by-  IOException: Disk quota exceeded (150 KB > 100 KB)
+S5 storage failure (quota forced to 100 KB below)   -> SORRY: your file could not be saved right now. Please try again in a few minutes.
+
+=== Unchecked configuration error (programmer bug) ===
+PortalConfigurationException (unchecked): Exam window closes before it opens
+
+=== Chained stack trace (cause preserved) ===
+SubmissionStorageException: Could not store ans5.pdf for S2
+	at StorageLayer.save(ExamPortal.java:35)
+	at ExamPortal.main(ExamPortal.java:137)
+Caused by: java.io.IOException: Disk quota exceeded (150 KB > 100 KB)
+	at StorageLayer.rawWrite(ExamPortal.java:47)
+	at StorageLayer.save(ExamPortal.java:33)
+	... 1 more
+getCause() = java.io.IOException: Disk quota exceeded (150 KB > 100 KB)
+frames in wrapper trace = 2, frames in cause trace = 3
+
+=== Same failure, cause DROPPED ===
+SubmissionStorageException: Could not store ans5.pdf for S2
+	at StorageLayer.saveLossy(ExamPortal.java:43)
+	at ExamPortal.main(ExamPortal.java:146)
+getCause() = null   <- the quota reason and the original line number are lost

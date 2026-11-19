@@ -1,0 +1,22 @@
+######## executor8
+mode = executor8, files = 10000, simulated latency = 1 ms
+summary: submitted=10000  OK=9300  MISSING=200  CORRUPT=300  EMPTY=100  DUPLICATE=100  | accounted=10000 complete=true
+elapsed = 1807 ms | peak live threads = 14 | VmHWM: 89204 kB | VmRSS: 89216 kB
+######## stream-catch
+mode = stream-catch, files = 10000, simulated latency = 1 ms
+counts: OK=9300 MISSING=200 CORRUPT=300 EMPTY=100 DUPLICATE=100 | match expected: true
+commonPool parallelism = 1
+elapsed = 5988 ms | peak live threads = 7 | VmHWM: 83764 kB | VmRSS: 82908 kB
+######## stream-nocatch
+mode = stream-nocatch, files = 10000, simulated latency = 1 ms
+STREAM ABORTED by first failure: MissingFileException: score05007.txt does not exist
+files processed before the abort: 13 of 10000  -> NO summary of the rest
+elapsed = 54 ms | peak live threads = 7 | VmHWM: 58248 kB | VmRSS: 58280 kB
+######## thread-per-file
+mode = thread-per-file, files = 10000, simulated latency = 1 ms
+counts: OK=9300 MISSING=200 CORRUPT=300 EMPTY=100 DUPLICATE=100 | match expected: true
+elapsed = 2118 ms | peak live threads = 81 | VmHWM: 147680 kB | VmRSS: 104008 kB
+######## thread-per-file-2s
+mode = thread-per-file-2s, files = 10000, simulated latency = 2000 ms
+counts: OK=9300 MISSING=200 CORRUPT=300 EMPTY=100 DUPLICATE=100 | match expected: true
+elapsed = 6778 ms | peak live threads = 10006 | VmHWM: 864112 kB | VmRSS: 291784 kB

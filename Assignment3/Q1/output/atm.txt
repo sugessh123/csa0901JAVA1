@@ -1,0 +1,9 @@
+=== Q1 ATM test run ===
+  [finally: card ejected #1] T1 valid withdrawal | in=(1001,2000) -> SUCCESS balance left=3000.0
+  [finally: card ejected #2] T2 letters in account number | in=(10O1,500) -> catch NumberFormatException|InvalidAmountException -> For input string: "10O1"
+  [finally: card ejected #3] T3 negative amount | in=(1001,-300) -> catch NumberFormatException|InvalidAmountException -> Amount must be positive: -300.0
+  [finally: card ejected #4] T4 amount above balance | in=(1001,9999) -> catch InsufficientFundsException -> Insufficient balance, short by Rs 6999.0
+  [finally: card ejected #5] T5 card-reader file missing | in=(1001,500) -> catch NoSuchFileException -> card reader file missing: /nonexistent/cardreader.dat
+  [finally: card ejected #6] T6 letters in amount | in=(1001,abc) -> catch NumberFormatException|InvalidAmountException -> For input string: "abc"
+  [finally: card ejected #7] T7 unknown account | in=(7777,100) -> catch NumberFormatException|InvalidAmountException -> Unknown account 7777
+finally blocks executed: 7 of 7 attempts

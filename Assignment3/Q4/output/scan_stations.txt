@@ -1,0 +1,20 @@
+=== 1. extends Thread ===
+  isAlive right after start(): S1=true S2=true S3=true S4=true 
+  isAlive after join()      : S1=false S2=false S3=false S4=false 
+  finish order = [S1, S2, S4, S3], total scanned = 160 (expected 160)
+=== 2. implements Runnable ===
+  isAlive right after start(): S1=true S2=true S3=true S4=true 
+  isAlive after join()      : S1=false S2=false S3=false S4=false 
+  finish order = [S1, S3, S2, S4], total scanned = 160 (expected 160)
+=== 3. run() vs start(): which thread executes the body? ===
+  calling t.run()   ->   body executed by thread: main
+  calling t.start() ->   body executed by thread: worker-1
+  calling t.start() a second time:
+  java.lang.IllegalThreadStateException
+=== 4. Thread life-cycle states observed with getState() ===
+  sleeper before start : NEW
+  sleeper              : TIMED_WAITING   (Thread.sleep)
+  waiter-on-join       : WAITING         (join without timeout)
+  blocked-on-lock      : BLOCKED         (waiting for monitor)
+  spinner              : RUNNABLE        (running / ready)
+  sleeper after finish : TERMINATED

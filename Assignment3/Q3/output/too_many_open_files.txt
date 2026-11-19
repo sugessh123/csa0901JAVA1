@@ -1,0 +1,7 @@
+ulimit -n = 100
+-- V0 (never closes): first failure and final summary
+   LOG WARNING store failed: store095.csv -> java.nio.file.FileSystemException: /tmp/fd15947419863674098456/store095.csv: Too many open files
+V0 no close(): processed 94 stores, failed 306
+-- V3 (try-with-resources), same limit
+V3 try-with-resources: processed 400 stores, failed 0
+number of stores that failed with "Too many open files": 306

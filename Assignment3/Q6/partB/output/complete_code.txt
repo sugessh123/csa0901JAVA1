@@ -1,0 +1,5 @@
+=== Given program with 'while' (TODO 1 and 2 completed), 100 runs ===
+Sum of tokens collected: 210 (expected 210)
+correct(210)=100  wrong=0  hung(timeout 5s)=0
+=== Same program with 'while' changed to 'if' in both methods, 100 runs ===
+correct(210)=37  wrong=63  hung(timeout 5s)=0
